@@ -4,8 +4,8 @@
  * Plugin Name: Embed Calendly Scheduling
  * Description: A simple and cleaner way to embed Calendly scheduling on WordPress.
  * Author: Shycoder
- * Author URI: https://www.linkedin.com/in/doyin-faith-kasumu/
- * Version: 1.0
+ * Author URI: https://shycoder.com/
+ * Version: 1.1
  * License: GPLv2 or later
  */
 

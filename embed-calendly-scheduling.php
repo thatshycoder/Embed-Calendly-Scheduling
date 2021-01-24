@@ -5,7 +5,7 @@
  * Description: A simple and cleaner way to embed Calendly scheduling on WordPress.
  * Author: Shycoder
  * Author URI: https://shycoder.com/
- * Version: 1.1
+ * Version: 1.2
  * License: GPLv2 or later
  */
 

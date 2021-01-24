@@ -20,9 +20,12 @@ Embed Calendly scheduling on your WordPress website in a cleaner and simpler way
 1. Supports inline, text popup and button popup embed.
 2. Customize embed form, link and button. 
 
-== Shortcode == 
+== Shortcode ==
 
-`[calendly type=3 url=https://calendly.com/example/call]` - Embed scheduling form with default options. 
+Embed scheduling form with default options using:
+
+`[calendly type=3 url=https://calendly.com/example/call]`
+
 
 == Customization == 
 

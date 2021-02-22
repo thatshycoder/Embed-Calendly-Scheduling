@@ -39,7 +39,7 @@ class EMCS_Shortcode
         $url = esc_url_raw($atts['url']);
         $embed_type = (!empty($atts['type'])) ? sanitize_text_field($atts['type']) : '1';
         $text = (!empty($atts['text'])) ? sanitize_text_field($atts['text']) : 'Schedule a call with me';
-        $class = (!empty($atts['class'])) ? sanitize_text_field($atts['class']) : '';
+        $class = (!empty($atts['style_class'])) ? sanitize_text_field($atts['style_class']) : '';
         $text_color = (!empty($atts['text_color'])) ? sanitize_text_field($atts['text_color']) : '#ffffff';
         $button_color = (!empty($atts['button_color'])) ? sanitize_text_field($atts['button_color']) : '#00a2ff';
         $branding = (!empty($atts['branding'])) ? sanitize_text_field($atts['branding']) : 'true';

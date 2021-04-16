@@ -3,8 +3,8 @@ Contributors: turn2honey
 Donate link: https://flutterwave.com/pay/spantuskqg2
 Tags: appointment, appointment booking, appointment scheduling, booking calendar
 Requires at least: 4.0
-Tested up to: 5.6
-Stable tag: 5.6
+Tested up to: 5.7
+Stable tag: 5.7
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ A simple and cleaner way to embed Calendly scheduling on WordPress.
 
 == Description ==
 
-Embed Calendly scheduling on your WordPress website in a cleaner and simpler way. Schedule meetings easily on your WordPress website through calendly.
+Embed Calendly scheduling on your WordPress website in a cleaner and simpler way. Schedule meetings easily on your WordPress website through Calendly.
 
 == Features ==
 
@@ -24,7 +24,9 @@ Embed Calendly scheduling on your WordPress website in a cleaner and simpler way
 
 Embed scheduling form with default options using:
 
-`[calendly type=3 url=https://calendly.com/example/call]`
+`
+[calendly type=3 url=https://calendly.com/example/call]
+`
 
 
 == Customization == 

@@ -1,0 +1,55 @@
+.emcs {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0;
+    color: #333;
+    font-size: 18px;
+}
+
+.emcs-wrapper {
+    margin: 60px 40px 0 20px;
+}
+
+.emcs-container {
+    background-color: #fff;
+    padding: 40px;
+    margin-top: 40px;
+}
+
+.emcs-text-center {
+    text-align: center;
+}
+
+.emcs-events {
+    margin-bottom: 40px;
+}
+
+.emcs-customizer {
+    margin: 80px auto;
+    padding: 80px 30px 80px 30px;
+    width: 40%;
+}
+
+.emcs-choose-customizer-form,
+.emcs-inline-text-customizer-form {
+    margin-top: 40px;
+}
+
+.emcs-inline-text-customizer-form {
+    display: none;
+}
+
+.emcs-label {
+    margin-bottom: 20px;
+}
+
+
+/** FORM SETTINGS **/
+
+.emcs-form-group {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-bottom: 0;
+}

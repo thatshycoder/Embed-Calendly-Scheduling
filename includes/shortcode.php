@@ -1,5 +1,8 @@
 <?php
 
+// Exit if accessed directly
+defined('ABSPATH') || exit;
+
 include_once(EMCS_DIR . '/includes/embed.php');
 
 class EMCS_Shortcode

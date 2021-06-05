@@ -77,6 +77,8 @@ function customizerHome() {
     chooseCustomizerForm.style.display = 'block';
 }
 
+/** Handle Form Type Changes */
+
 // chooseCustomizerSelect.addEventListener('change', generatedShortcode);
 
 // generatedShortcode.forEach(element => {

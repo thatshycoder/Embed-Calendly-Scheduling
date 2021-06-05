@@ -3,16 +3,27 @@
 defined('ABSPATH') || exit;
 ?>
 
-<div class="emcs-choose-customizer-form">
-    <form action="admin.php?page=emcs-customizer" method="post">
-        <div class="emcs-label">
-            <label for="choose-customizer">Choose Event Type</label>
+<div class="emcs-choose-customizer-form emcs emcs-text-center">
+    <div class="sc-wrapper">
+        <div class="sc-container">
+            <form action="admin.php?page=emcs-customizer" method="post">
+                <div class="form-group">
+                    <label for="choose-customizer">Choose Event Type</label>
+                </div>
+                <div class="form-group">
+                    <select name="emcs-choose-customizer-select">
+                        <?php
+
+                        foreach (self::$events as $event) {
+                        ?>
+                            <option value="<?php echo $event->get_event_url(); ?>"><?php echo $event->get_event_name(); ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                    <button type="submit" name="emcs-choose-customizer" class="button button-primary">Start customizing</button>
+                </div>
+            </form>
         </div>
-        <div class="emcs-label">
-            <select id="emcs-choose-customizer-select">
-                <option value="Discovery Session">Discovery Session</option>
-            </select>
-            <button type="submit" id="emcs-choose-customizer" class="button button-primary">Start customizing</button>
-        </div>
-    </form>
+    </div>
 </div>

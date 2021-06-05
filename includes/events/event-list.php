@@ -31,9 +31,7 @@ class EMCS_Events
 
     public static function emcs_event_list_html()
     {
-        $options = get_option('emcs_settings');
-        $api_key = !empty($options['emcs_api_key']) ? $options['emcs_api_key'] : '';
-        $events = EMCS_API::emcs_get_events($api_key);
+        $events = self::get_events();
 ?>
         <div class="emcs">Embed Calendly</div>
         <div class="emcs-wrapper">
@@ -86,5 +84,11 @@ class EMCS_Events
 <?php
                         }
                     }
+                }
+
+                public static function get_events() {
+                    $options = get_option('emcs_settings');
+                    $api_key = !empty($options['emcs_api_key']) ? $options['emcs_api_key'] : '';
+                    return EMCS_API::emcs_get_events($api_key);
                 }
             }

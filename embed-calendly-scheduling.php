@@ -13,15 +13,17 @@ defined('ABSPATH') or die('No script kiddies please.');
 define('EMCS_DIR', plugin_dir_path(__FILE__));
 define('EMCS_URL', plugin_dir_url(__FILE__));
 define('EMCS_INCLUDES', EMCS_DIR . 'includes/');
+define('EMCS_EVENTS', EMCS_INCLUDES . 'events/');
 define('EMCS_CUSTOMIZER_TEMPLATES', EMCS_INCLUDES . 'embed-customizer/template-parts/');
 
 include_once(EMCS_INCLUDES . 'shortcode.php');
-include_once(EMCS_INCLUDES . 'events/event-list.php');
+include_once(EMCS_EVENTS . 'event-list.php');
 include_once(EMCS_INCLUDES . 'embed-customizer/customizer.php');
 
 function emcs_admin_scripts()
 {
     wp_enqueue_style('emcs_admin_css', EMCS_URL . 'assets/css/admin.css');
+    wp_enqueue_style('emcs_util_css', EMCS_URL . 'assets/css/util.css');
     wp_enqueue_script('emcs_admin_js',  EMCS_URL . 'assets/js/embed-customizer.js', array(), false, true);
 }
 

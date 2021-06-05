@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 
                         foreach (self::$events as $event) {
                         ?>
-                            <option value="<?php echo $event->get_event_url(); ?>"><?php echo $event->get_event_name(); ?></option>
+                            <option value="<?php echo $event->get_event_slug(); ?>"><?php echo $event->get_event_name(); ?></option>
                         <?php
                         }
                         ?>

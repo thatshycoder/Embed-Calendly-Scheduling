@@ -63,6 +63,7 @@ class EMCS_API
                 $events->attributes->description,
                 $events->attributes->active,
                 $events->attributes->url,
+                '/' . $events->attributes->slug,
             );
 
             $events_data[] = $event;

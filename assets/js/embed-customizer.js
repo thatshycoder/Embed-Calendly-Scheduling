@@ -22,7 +22,7 @@ function startCustomizing(e) {
 }
 
 function showDefaultShortcode() {
-    let shortcode = `[calendly url=${ chooseCustomizerSelect.value }]`;
+    let shortcode = `[calendly url="${ chooseCustomizerSelect.value }"]`;
 
     generatedShortcode.forEach(element => {
         element.innerHTML = shortcode;

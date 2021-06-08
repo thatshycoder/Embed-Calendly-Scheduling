@@ -12,9 +12,9 @@ defined('ABSPATH') || exit;
                         <div class="form-row emcs-form-row">
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-type">Type</label>
-                                <select name="emcs-embed-type" class="form-control">
+                                <select name="emcs-customizer-embed-type" class="form-control">
                                     <option value="emcs-inline-text">Inline Form</option>
-                                    <option value="emcs-popup-text" selected>Popup Text</option>
+                                    <option value="emcs-popup-text" selected="selected">Popup Text</option>
                                     <option value="emcs-popup-button">Popup Button</option>
                                 </select>
                             </div>
@@ -40,7 +40,9 @@ defined('ABSPATH') || exit;
                 <div class="col-md-4">
                     Preview
                     <div class="emcs-customizer-preview">
-                        <div class="preview-content">jgj</div>
+                        <div class="preview-content">
+                            <div class="preview"></div>
+                        </div>
                     </div>
                     <div class="emcs-embed-customizer-shortcode"></div>
                 </div>

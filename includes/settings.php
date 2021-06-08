@@ -12,8 +12,8 @@ function emcs_settings_init()
 
     add_settings_section(
         'emcs_api_section',
-        __('Embed Calendly Settings', 'emcs'),
-        'emcs_api_section_cb',
+        __('Setup Calendly connection', 'emcs'),
+        '',
         'emcs'
     );
 
@@ -29,21 +29,15 @@ function emcs_settings_init()
     );
 }
 
-function emcs_api_section_cb($args)
-{
-?>
-    <p id="<?php echo esc_attr($args['id']); ?>"><?php esc_html_e('Setup Calendly connection', 'emcs'); ?></p>
-<?php
-}
-
 function emcs_api_field_cb($args)
 {
     // Get the value of the setting we've registered previously
     $options = get_option('emcs_settings');
+
     // TODO: Strip spaces
 ?>
-    <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo !empty($options['emcs_api_key']) ? esc_html($options['emcs_api_key']) : ''; ?> " />
-    <p class="description">
+    <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo !empty($options['emcs_api_key']) ? esc_html($options['emcs_api_key']) : ''; ?>" class="form-control" />
+    <p id="<?php echo esc_attr($args['label_for']); ?>_description">
         <?php esc_html_e('Your API Key can be found in your Calendly "integeration" page', 'emcs'); ?>
     </p>
 <?php

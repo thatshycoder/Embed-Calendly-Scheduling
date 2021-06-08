@@ -34,14 +34,20 @@
 
 .emcs-customizer {
     margin: 80px auto;
-    padding: 80px 20px 80px 20px;
+    padding: 80px 50px 70px 50px;
     width: 60%;
 }
 
 .emcs-customizer-preview {
     background-color: #cccccc;
     height: 200px;
+}
+
+.emcs-customizer-preview .preview-content {
     vertical-align: middle;
+    display: table-cell;
+    height: inherit;
+    padding: 20px;
 }
 
 .emcs-choose-customizer-form,
@@ -65,4 +71,14 @@
     margin-top: 20px;
     font-weight: bold;
     word-break: break-all;
+}
+
+#emcs_api_key {
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #e2dede;
+}
+
+#emcs_api_key_description {
+    font-size: 12px;
 }

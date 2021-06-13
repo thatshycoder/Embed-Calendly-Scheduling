@@ -13,18 +13,18 @@ defined('ABSPATH') || exit;
                             <div class="form-group col-md-4">
                                 <label for="emcs-embed-type">Type</label>
                                 <select name="emcs-customizer-embed-type" class="form-control">
-                                    <option value="emcs-inline-text" selected="selected">Inline Form</option>
+                                    <option value="emcs-inline-text">Inline Form</option>
                                     <option value="emcs-popup-text">Popup Text</option>
                                     <option value="emcs-popup-button">Popup Button</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="emcs-embed-form-height">Form Height(px)</label>
-                                <input type="text" class="form-control" name="emcs-embed-form-height" placeholder="600">
+                                <input type="number" class="form-control" name="emcs-embed-form-height" value="600" placeholder="600">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="emcs-embed-form-width">Form Width(px)</label>
-                                <input type="text" class="form-control" name="emcs-embed-form-width" placeholder="400">
+                                <input type="number" class="form-control" name="emcs-embed-form-width" value="400" placeholder="400">
                             </div>
                         </div>
                     </form>

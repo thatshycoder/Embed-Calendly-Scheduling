@@ -15,43 +15,43 @@ defined('ABSPATH') || exit;
                                 <select name="emcs-customizer-embed-type" class="form-control">
                                     <option value="emcs-inline-text">Inline Form</option>
                                     <option value="emcs-popup-text">Popup Text</option>
-                                    <option value="emcs-popup-button" selected="selected">Popup Button</option>
+                                    <option value="emcs-popup-button">Popup Button</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-text">Text</label>
-                                <input type="text" class="form-control" name="emcs-embed-text" placeholder="Book Now">
+                                <input type="text" class="form-control" name="emcs-embed-text" value="Book Now">
                             </div>
                         </div>
                         <div class="form-row emcs-form-row">
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-button-style">Button Style</label>
-                                <select name="emcs-embed-type" class="form-control">
-                                    <option value="emcs-inline-text">Inline</option>
-                                    <option value="emcs-popup-text">Float</option>
+                                <select name="emcs-embed-button-style" class="form-control">
+                                    <option value="emcs-embed-button-inline">Inline</option>
+                                    <option value="emcs-embed-button-float" selected="selected">Float</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="emcs-embed-text-size">Button Size</label>
-                                <select name="emcs-embed-type" class="form-control">
-                                    <option value="emcs-inline-text">Small</option>
-                                    <option value="emcs-popup-text">Medium</option>
-                                    <option value="emcs-popup-button" selected>Large</option>
+                                <label for="emcs-embed-button-size">Button Size</label>
+                                <select name="emcs-embed-button-size" class="form-control">
+                                    <option value="emcs-embed-button-small">Small</option>
+                                    <option value="emcs-embed-button-medium">Medium</option>
+                                    <option value="emcs-embed-button-large" selected="selected">Large</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-row emcs-form-row">
                             <div class="form-group col-md-3">
-                                <label for="emcs-embed-text-color">Background</label>
-                                <input type="color" class="form-control" name="emcs-embed-form-height" placeholder="#ffffff">
+                                <label for="emcs-embed-button-background">Background</label>
+                                <input type="color" class="form-control" name="emcs-embed-button-background" value="#ffffff">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="emcs-embed-text-color">Text Color</label>
-                                <input type="color" class="form-control" name="emcs-embed-form-height" placeholder="#ffffff">
+                                <input type="color" class="form-control" name="emcs-embed-text-color" value="#ffffff">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-text-size">Text Size(px)</label>
-                                <input type="text" class="form-control" name="emcs-embed-form-width" placeholder="12px">
+                                <input type="number" class="form-control" name="emcs-embed-text-size" value="12">
                             </div>
                         </div>
                     </form>

@@ -4,20 +4,32 @@
     margin: 0;
     color: #333;
     font-size: 18px;
+    line-height: 1;
+}
+
+.emcs-embed-title {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: center;
 }
 
 .emcs-wrapper {
-    margin: 60px 40px 0 20px;
+    margin: 60px 40px 60 20px;
 }
 
 .emcs-container {
     background-color: #fff;
-    padding: 40px;
+    box-shadow: 1px 2px 11px 5px #ece9e9;
     margin-top: 40px;
 }
 
 .emcs-text-center {
     text-align: center;
+}
+
+td.emcs_event_type_column {
+    padding-top: 20px;
 }
 
 .emcs-events {
@@ -26,30 +38,82 @@
 
 .emcs-customizer {
     margin: 80px auto;
-    padding: 80px 30px 80px 30px;
-    width: 40%;
+    padding: 80px 50px 70px 50px;
+    width: 60%;
+}
+
+.emcs-customizer-preview {
+    background-color: #cccccc;
+    height: 200px;
+}
+
+.emcs-customizer-preview .emcs-preview-content {
+    vertical-align: middle;
+    display: table-cell;
+    height: inherit;
+    padding: 20px;
+    white-space: nowrap;
 }
 
 .emcs-choose-customizer-form,
-.emcs-inline-text-customizer-form {
-    margin-top: 40px;
+.emcs-inline-form-customizer-form,
+.emcs-popup-text-customizer-form,
+.emcs-popup-button-customizer-form {
+    margin-top: 60px;
 }
 
-.emcs-inline-text-customizer-form {
+select.form-control {
+    max-width: 100%;
+}
+
+button.button.button-default.emcs-customizer-home {
+    margin-top: 20px
+}
+
+button.button.button-primary.emcs-button-primary {
+    background-color: #116DEC;
+}
+
+.emcs-inline-form-customizer-form,
+.emcs-popup-text-customizer-form,
+.emcs-popup-button-customizer-form {
     display: none;
 }
 
-.emcs-label {
+.emcs-form-row {
     margin-bottom: 20px;
 }
 
+input[name="emcs-embed-customizer-shortcode"].form-control {
+    margin-top: 10px;
+    padding: 25px 8px 25px 8px;
+    font-size: 12px;
+}
 
-/** FORM SETTINGS **/
+#emcs_api_key_description {
+    font-size: 12px;
+}
 
-.emcs-form-group {
-    display: flex;
-    flex: 0 0 auto;
-    flex-flow: row wrap;
-    align-items: center;
-    margin-bottom: 0;
+.emcs-promotion-container {
+    border: 2px dashed#116DED;
+    padding: 20px;
+}
+
+.emcs-promotion {
+    background-color: #fff;
+    border: 2px dashed#116DED;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .emcs-customizer {
+        width: auto;
+        padding: 80px 0 70px 0;
+    }
+    select.emcs-choose-customizer-select {
+        max-width: 100%;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
 }

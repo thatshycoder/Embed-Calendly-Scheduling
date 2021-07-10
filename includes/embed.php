@@ -38,7 +38,8 @@ class EMCS_Embed
     protected function embed_inline_widget($atts = array())
     {
         if (!empty($atts)) {
-            return '<div class="calendly-inline-widget ' . esc_attr($atts['style_class']) . '" data-url="' . esc_attr($atts['url']) . '"></div>';
+            return '<div class="calendly-inline-widget ' . esc_attr($atts['style_class']) . '" data-url="' . esc_attr($atts['url']) . '"
+                         style="height:' . esc_attr($atts['form_height']) . '; width:' . esc_attr($atts['form_width']) . '"></div>';
         }
     }
 
@@ -48,7 +49,20 @@ class EMCS_Embed
     protected function embed_popup_text_widget($atts = array())
     {
         if (!empty($atts)) {
-            return '<a class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url: \'' . esc_attr($atts['url']) . '\'});return false;">' . $atts['text'] . '</a>';
+            return '<a class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url: \'' . esc_attr($atts['url']) . '\'});return false;"
+                       style="text-size:' . esc_attr($atts['text_size']) . '; color:' . esc_attr($atts['text_color']) . '">' . $atts['text'] . '</a>';
+        }
+    }
+
+    /**
+     * Embeds calendly inline button widget
+     */
+    protected function embed_popup_inline_button_widget($atts = array())
+    {
+        // CONTINUE
+        if (!empty($atts)) {
+            return '<a class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url: \'' . esc_attr($atts['url']) . '\'});return false;"
+                       style="text-size:' . esc_attr($atts['text_size']) . '; color:' . esc_attr($atts['text_color']) . ';">' . $atts['text'] . '</a>';
         }
     }
 

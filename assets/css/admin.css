@@ -28,6 +28,10 @@
     text-align: center;
 }
 
+td.emcs_event_type_column {
+    padding-top: 20px;
+}
+
 .emcs-events {
     margin-bottom: 40px;
 }
@@ -43,11 +47,12 @@
     height: 200px;
 }
 
-.emcs-customizer-preview .preview-content {
+.emcs-customizer-preview .emcs-preview-content {
     vertical-align: middle;
     display: table-cell;
     height: inherit;
     padding: 20px;
+    white-space: nowrap;
 }
 
 .emcs-choose-customizer-form,
@@ -55,6 +60,18 @@
 .emcs-popup-text-customizer-form,
 .emcs-popup-button-customizer-form {
     margin-top: 60px;
+}
+
+select.form-control {
+    max-width: 100%;
+}
+
+button.button.button-default.emcs-customizer-home {
+    margin-top: 20px
+}
+
+button.button.button-primary.emcs-button-primary {
+    background-color: #116DEC;
 }
 
 .emcs-inline-form-customizer-form,
@@ -67,18 +84,36 @@
     margin-bottom: 20px;
 }
 
-.emcs-embed-customizer-shortcode {
-    margin-top: 20px;
-    font-weight: bold;
-    word-break: break-all;
-}
-
-#emcs_api_key {
-    width: 40%;
-    padding: 10px;
-    border: 1px solid #e2dede;
+input[name="emcs-embed-customizer-shortcode"].form-control {
+    margin-top: 10px;
+    padding: 25px 8px 25px 8px;
+    font-size: 12px;
 }
 
 #emcs_api_key_description {
     font-size: 12px;
+}
+
+.emcs-promotion-container {
+    border: 2px dashed#116DED;
+    padding: 20px;
+}
+
+.emcs-promotion {
+    background-color: #fff;
+    border: 2px dashed#116DED;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-device-width: 768px) {
+    .emcs-customizer {
+        width: auto;
+        padding: 80px 0 70px 0;
+    }
+    select.emcs-choose-customizer-select {
+        max-width: 100%;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
 }

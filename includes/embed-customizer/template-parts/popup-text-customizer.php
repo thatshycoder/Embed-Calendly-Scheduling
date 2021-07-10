@@ -11,7 +11,7 @@ defined('ABSPATH') || exit;
                     <form>
                         <div class="form-row emcs-form-row">
                             <div class="form-group col-md-6">
-                                <label for="emcs-embed-type">Type</label>
+                                <label for="emcs-embed-type">Embed Type</label>
                                 <select name="emcs-customizer-embed-type" class="form-control">
                                     <option value="emcs-inline-text">Inline Form</option>
                                     <option value="emcs-popup-text">Popup Text</option>
@@ -26,7 +26,7 @@ defined('ABSPATH') || exit;
                         <div class="form-row emcs-form-row">
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-text-color">Text Color</label>
-                                <input type="color" class="form-control" name="emcs-embed-text-color" value="#ffffff">
+                                <input type="color" class="form-control" name="emcs-embed-text-color" value="#2694ea">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-text-size">Text Size(px)</label>
@@ -34,19 +34,20 @@ defined('ABSPATH') || exit;
                             </div>
                         </div>
                     </form>
-                    <button type="button" name="emcs-customizer-home" class="button button-default">
-                        << Go Back </button>
                 </div>
                 <div class="col-md-4">
                     Preview
                     <div class="emcs-customizer-preview">
-                        <div class="preview-content">
-                            <div class="preview"></div>
+                        <div class="emcs-preview-content">
+                            <div class="emcs-preview"></div>
                         </div>
                     </div>
-                    <div class="emcs-embed-customizer-shortcode"></div>
+                    <input type="text" name="emcs-embed-customizer-shortcode" class="form-control" onclick="this.select();" value="">
+                    <small>Click to copy shortcode</small>
                 </div>
             </div>
+            <button type="button" name="emcs-customizer-home" class="button button-default emcs-customizer-home">
+                        << Go Back </button>
         </div>
     </div>
 </div>

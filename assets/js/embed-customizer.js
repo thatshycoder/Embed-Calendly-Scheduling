@@ -20,13 +20,27 @@ const embedButtonStyle = document.querySelector('select[name="emcs-embed-button-
 const embedButtonSize = document.querySelector('select[name="emcs-embed-button-size"]');
 const embedButtonBackground = document.querySelector('input[name="emcs-embed-button-background"]');
 
+// get the url parameter and display appropriate content
+const calendlyUrl = 'https://calendly.com/spantus/';
+let eventSlug = '';
+const URLString = window.location.href;
+const url = new URL(URLString);
+const slug = url.searchParams.get('event_type');
+
+if (slug !== null && isNaN(parseInt(slug))) {
+    eventSlug = calendlyUrl + slug.toString().toLowerCase().trim();
+    showInlineFormCustomizer();
+}
 
 // Handle the start customization button click
-startCustomizingButton.addEventListener('click', showDefaultCustomizer);
+if (chooseCustomizerForm !== null) {
 
-function showDefaultCustomizer(e) {
-    e.preventDefault();
-    showInlineFormCustomizer();
+    startCustomizingButton.addEventListener('click', showDefaultCustomizer);
+
+    function showDefaultCustomizer(e) {
+        e.preventDefault();
+        showInlineFormCustomizer();
+    }
 }
 
 // ---------- Start Handling Form Inputs -------------
@@ -64,6 +78,7 @@ function showPopupTextFormCustomizer() {
 
     hideAllEmbedCustomizersExcept(popupTextCustomizerForm);
     resetEmbedTypeSelector(popupTextCustomizerForm, 1);
+    updateEmbedCustomizerPreviewDiv(option, 1, popupTextCustomizerForm);
     updateGeneratedShortcode(option, popupTextCustomizerForm);
 }
 
@@ -73,6 +88,7 @@ function showPopupButtonFormCustomizer() {
 
     hideAllEmbedCustomizersExcept(popupButtonCustomizerForm);
     resetEmbedTypeSelector(popupButtonCustomizerForm, 2);
+    updateEmbedCustomizerPreviewDiv(option, 2, popupButtonCustomizerForm);
     updateGeneratedShortcode(option, popupButtonCustomizerForm);
 }
 
@@ -83,8 +99,10 @@ function resetEmbedTypeSelector(customizerForm, index) {
 function hideAllEmbedCustomizersExcept(customizer = '') {
     if (customizer !== '') {
 
-        // start by hiding alll customizer forms
-        chooseCustomizerForm.style.display = 'none';
+        if (chooseCustomizerForm !== null) {
+            chooseCustomizerForm.style.display = 'none';
+        }
+
         inlineFormCustomizerForm.style.display = 'none'
         popupTextCustomizerForm.style.display = 'none';
         popupButtonCustomizerForm.style.display = 'none';
@@ -146,7 +164,87 @@ function updatePopupButtonCustomizer() {
 
 function updateEmbedCustomizerPreview(customizerType = 1, customizerForm = '') {
     let option = prepareEmbedCustomizerOptions(customizerType);
+
+    // embed preview not available for inline customizer embed type
+    if (customizerType == 2 || customizerType == 3) {
+        updateEmbedCustomizerPreviewDiv(option, customizerType, customizerForm);
+    }
+
     updateGeneratedShortcode(option, customizerForm);
+}
+
+function updateEmbedCustomizerPreviewDiv(option, customizerFormType, customizerForm) {
+
+    let div = customizerForm.querySelector('.emcs-customizer-preview .emcs-preview-content .emcs-preview');
+    updatePopupTextCustomizerPreviewDiv(div, option);
+
+    if (customizerFormType == 3) {
+        updatePopupButtonCustomizerPreviewDiv(div, option);
+    }
+}
+
+function updatePopupTextCustomizerPreviewDiv(div, option) {
+    div.innerHTML = option.text;
+    div.style.color = option.text_color;
+    div.style.fontSize = option.text_size + 'px';
+}
+
+function updatePopupButtonCustomizerPreviewDiv(div, option) {
+
+    switch (option.button_size) {
+        case 1:
+            div.style.padding = '4px 6px 4px 6px';
+            break;
+
+        case 2:
+            div.style.padding = '5px 10px 5px 10px';
+            break;
+
+        default:
+            div.style.padding = '8px 15px 8px 15px';
+    }
+
+    div.style.backgroundColor = option.button_color;
+}
+
+/**
+ * Update the generated shortcode with new options
+ * @param {String} options 
+ */
+function updateGeneratedShortcode(options, parent) {
+
+    let shortcodeContainer = parent.querySelector('input[name="emcs-embed-customizer-shortcode"]');
+    shortcodeContainer.style.display = 'none'
+
+    if (options == '' && options !== undefined) {
+
+        shortcodeContainer.style.display = 'block';
+        shortcodeContainer.value = generateShortcode(getDefaultShortcodeOptionString());
+
+    } else {
+        shortcodeContainer.style.display = 'block';
+
+        let optionString = ' ';
+
+        for (let i in options) {
+            optionString += `${i}="${ options[i] }" `;
+        }
+
+        let option = `${ getDefaultShortcodeOptionString() } ${optionString}`;
+        shortcodeContainer.value = generateShortcode(option);
+    }
+}
+
+function generateShortcode(options) {
+    return `[calendly ${options}]`;
+}
+
+function getDefaultShortcodeOptionString() {
+    if (eventSlug == '') {
+        return `url="${calendlyUrl + chooseCustomizerSelect.value}"`;
+    }
+
+    return `url="${eventSlug}"`;
 }
 
 /**
@@ -177,7 +275,7 @@ function prepareEmbedCustomizerOptions(customizer = 1) {
         text_size: popupButtonCustomizerForm.querySelector('input[name="emcs-embed-text-size"]').value,
         button_style: getPopupButtonProperties().style,
         button_size: getPopupButtonProperties().size,
-        button_background: getPopupButtonProperties().background
+        button_color: getPopupButtonProperties().background
     }
 
     switch (customizer) {
@@ -217,42 +315,6 @@ function getPopupButtonProperties() {
     embedButtonProperties.background = popupButtonCustomizerForm.querySelector('input[name="emcs-embed-button-background"]').value;
 
     return embedButtonProperties;
-}
-
-/**
- * Update the generated shortcode with new options
- * @param {String} options 
- */
-function updateGeneratedShortcode(options, parent) {
-
-    let shortcodeContainer = parent.querySelector('.emcs-embed-customizer-shortcode');
-    shortcodeContainer.style.display = 'none'
-
-    if (options == '' && options !== undefined) {
-
-        shortcodeContainer.style.display = 'block';
-        shortcode.innerHTML = generateShortcode(getDefaultShortcodeOptionString());
-
-    } else {
-        shortcodeContainer.style.display = 'block';
-
-        let optionString = ' ';
-
-        for (let i in options) {
-            optionString += `${i}="${ options[i] }" `;
-        }
-
-        let option = `${ getDefaultShortcodeOptionString() } ${optionString}`;
-        shortcodeContainer.innerHTML = generateShortcode(option);
-    }
-}
-
-function generateShortcode(options) {
-    return `[calendly ${options}]`;
-}
-
-function getDefaultShortcodeOptionString() {
-    return `url="${chooseCustomizerSelect.value}"`;
 }
 
 // Handles when the "back" button is clicked from any customizer type

@@ -11,17 +11,17 @@ defined('ABSPATH') || exit;
                     <label for="choose-customizer">Choose Event Type</label>
                 </div>
                 <div class="form-group">
-                    <select name="emcs-choose-customizer-select">
+                    <select name="emcs-choose-customizer-select" class="emcs-choose-customizer-select">
                         <?php
 
-                        foreach (self::$events as $event) {
+                        foreach ($events as $event) {
                         ?>
-                            <option value="<?php echo $event->get_event_url(); ?>"><?php echo $event->get_event_name(); ?></option>
+                            <option value="<?php echo $event->slug; ?>"><?php echo $event->name; ?></option>
                         <?php
                         }
                         ?>
                     </select>
-                    <button type="submit" name="emcs-choose-customizer" class="button button-primary">Start customizing</button>
+                    <button type="submit" name="emcs-choose-customizer" class="button button-primary emcs-button-primary">Start customizing</button>
                 </div>
             </form>
         </div>

@@ -2,13 +2,13 @@
 // Exit if accessed directly
 defined('ABSPATH') || exit;
 
-class EMCS_Event
+class EMCS_Event_Type
 {
-    private $name = '';
-    private $description = '';
-    private $status = false;
-    private $url = '';
-    private $slug = '';
+    private $name;
+    private $description;
+    private $status;
+    private $url;
+    private $slug;
 
     public function __construct($name, $description, $status, $url, $slug)
     {

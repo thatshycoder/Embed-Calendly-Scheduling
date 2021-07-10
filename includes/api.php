@@ -2,7 +2,7 @@
 // Exit if accessed directly
 defined('ABSPATH') || exit;
 
-include_once(EMCS_INCLUDES . 'events/event.php');
+include_once(EMCS_INCLUDES . 'event-types/event-type.php');
 
 /**
  * Setup Calendly API connection 
@@ -36,10 +36,7 @@ class EMCS_API
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
-
-        if (curl_errno($ch)) {
-            echo 'Error:' . curl_error($ch);
-        }
+        
         curl_close($ch);
 
         return json_decode($result);
@@ -57,13 +54,13 @@ class EMCS_API
         }
 
         foreach ($calendly_events->data as $events) {
-
-            $event = new EMCS_Event(
+        
+            $event = new EMCS_Event_Type(
                 $events->attributes->name,
                 $events->attributes->description,
                 $events->attributes->active,
                 $events->attributes->url,
-                '/' . $events->attributes->slug,
+                $events->attributes->slug,
             );
 
             $events_data[] = $event;

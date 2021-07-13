@@ -115,6 +115,13 @@ class EMCS_Event_Types
         return false;
     }
 
+    public static function sync_button_listener()
+    {
+        if (isset($_REQUEST['emcs_sync_events'])) {
+            self::sync_event_types();
+        }
+    }
+
     public static function sync_event_types()
     {
         self::flush_event_types();

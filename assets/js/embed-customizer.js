@@ -143,8 +143,10 @@ embedTextColor.forEach(element => {
 
 function updatePopupTextCustomizer() {
 
-    updateEmbedCustomizerPreview(2, popupTextCustomizerForm);
-    updateEmbedCustomizerPreview(3, popupButtonCustomizerForm);
+    if (this.value < 31 && this.value > 9) {
+        updateEmbedCustomizerPreview(2, popupTextCustomizerForm);
+        updateEmbedCustomizerPreview(3, popupButtonCustomizerForm);
+    }
 }
 
 // -------------------------------- Popup Button Inputs -------------------------------------------------
@@ -191,17 +193,18 @@ function updatePopupTextCustomizerPreviewDiv(div, option) {
 
 function updatePopupButtonCustomizerPreviewDiv(div, option) {
 
+    // CONTINUE
     switch (option.button_size) {
         case 1:
-            div.style.padding = '4px 6px 4px 6px';
+            div.style.padding = '10px';
             break;
 
         case 2:
-            div.style.padding = '5px 10px 5px 10px';
+            div.style.padding = '15px';
             break;
 
         default:
-            div.style.padding = '8px 15px 8px 15px';
+            div.style.padding = '20px';
     }
 
     div.style.backgroundColor = option.button_color;
@@ -224,19 +227,19 @@ function updateGeneratedShortcode(options, parent) {
     } else {
         shortcodeContainer.style.display = 'block';
 
-        let optionString = ' ';
+        let optionString = '';
 
         for (let i in options) {
-            optionString += `${i}="${ options[i] }" `;
+            optionString += `${i}="${options[i]}" `;
         }
 
-        let option = `${ getDefaultShortcodeOptionString() } ${optionString}`;
+        let option = `${getDefaultShortcodeOptionString()} ${optionString}`;
         shortcodeContainer.value = generateShortcode(option);
     }
 }
 
 function generateShortcode(options) {
-    return `[calendly ${options}]`;
+    return `[calendly ${options.trim()}]`;
 }
 
 function getDefaultShortcodeOptionString() {
@@ -262,14 +265,14 @@ function prepareEmbedCustomizerOptions(customizer = 1) {
     }
 
     let popupTextCustomizerOption = {
-        type: 2,
+        type: 3,
         text: popupTextCustomizerForm.querySelector('input[name="emcs-embed-text"]').value,
         text_color: popupTextCustomizerForm.querySelector('input[name="emcs-embed-text-color"]').value,
         text_size: popupTextCustomizerForm.querySelector('input[name="emcs-embed-text-size"]').value
     }
 
     let popupButtonCustomizerOption = {
-        type: 3,
+        type: 2,
         text: popupButtonCustomizerForm.querySelector('input[name="emcs-embed-text"]').value,
         text_color: popupButtonCustomizerForm.querySelector('input[name="emcs-embed-text-color"]').value,
         text_size: popupButtonCustomizerForm.querySelector('input[name="emcs-embed-text-size"]').value,

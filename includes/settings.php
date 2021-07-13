@@ -52,8 +52,8 @@ add_action('admin_init', 'emcs_settings_init');
 function emcs_settings_page()
 {
     add_submenu_page(
-        'emcs-events',
-        __('Embed Calendly Settings', 'emcs'),
+        'emcs-event-types',
+        __('', 'emcs'),
         __('Settings', 'emcs'),
         'manage_options',
         'emcs-settings',
@@ -74,6 +74,12 @@ function emcs_settings_page_html()
 
     settings_errors('emcs_messages');
 ?>
+    <div class="emcs-title">
+        <img src="<?php echo EMCS_URL . 'assets/img/emc-logo.svg' ?>" width="200px" />
+    </div>
+    <div class="emcs-subtitle">
+        Settings
+    </div>
     <div class="sc-wrapper">
         <div class="sc-container">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
@@ -90,9 +96,15 @@ function emcs_settings_page_html()
                 <div class="col-md-3 emcs-promotion-container">
                     <h3>Like this plugin?</h3>
                     <p>
-                    If you find this plugin useful, please show your love and support by
-                    rating it ***** on<a href="https://wordpress.org/support/plugin/embed-calendly-scheduling/" target="_blank"> WordPress.org </a>
-                    - much appreciated! :-D
+                        If you find this plugin useful, please show your love and support by
+                        rating it 
+                        <span class="dashicons dashicons-star-filled emcs-dashicon emcs-dashicon-rating"></span>
+                        <span class="dashicons dashicons-star-filled emcs-dashicon emcs-dashicon-rating"></span>
+                        <span class="dashicons dashicons-star-filled emcs-dashicon emcs-dashicon-rating"></span>
+                        <span class="dashicons dashicons-star-filled emcs-dashicon emcs-dashicon-rating"></span>
+                        <span class="dashicons dashicons-star-filled emcs-dashicon emcs-dashicon-rating"></span>
+                        on<a href="https://wordpress.org/support/plugin/embed-calendly-scheduling/reviews/#new-post" target="_blank"> WordPress.org </a>
+                        - much appreciated! :-D
                     </p><br>
                     <div class="emcs-promotion">
                         <h2>Need Support?</h2>
@@ -106,13 +118,13 @@ function emcs_settings_page_html()
                         <p>
                             Your generous donation will help me keep supporting and improving the plugin. Thank you :)
                         <ul>
-                            <li>BTC:</li>
-                            <li>Ethereum:</li>
+                            <li><strong>BTC:</strong> 1DbpWbEAcfme2oEs2fTP67sCMqzz8sxktW</li>
+                            <li><strong>Ethereum:</strong> 0xeadc1c4e0103a8239345ab4dee1bea27a81a0b60</li>
                         </ul>
                         </p>
                         <div class="emcs-text-center">
                             <a href="https://flutterwave.com/pay/spantuskqg2" target="_blank">
-                                <img src="<?php echo esc_attr(EMCS_URL . 'assets/img/donate.PNG'); ?>" width="100" alt="Donate" />
+                                <img src="<?php echo esc_attr(EMCS_URL . 'assets/img/donate.png'); ?>" width="100" alt="Donate" />
                             </a>
                         </div>
                     </div>

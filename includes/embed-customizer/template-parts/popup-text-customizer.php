@@ -30,7 +30,7 @@ defined('ABSPATH') || exit;
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-text-size">Text Size(px)</label>
-                                <input type="number" class="form-control" name="emcs-embed-text-size" value="12">
+                                <input type="number" class="form-control" name="emcs-embed-text-size" min="10" max="30" value="12">
                             </div>
                         </div>
                     </form>

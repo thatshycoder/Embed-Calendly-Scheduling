@@ -17,6 +17,7 @@ define('EMCS_EVENT_TYPES', EMCS_INCLUDES . 'event-types/');
 define('EMCS_CUSTOMIZER_TEMPLATES', EMCS_INCLUDES . 'embed-customizer/template-parts/');
 
 include_once(EMCS_INCLUDES . 'shortcode.php');
+include_once(EMCS_INCLUDES . 'admin.php');
 include_once(EMCS_EVENT_TYPES . 'event-types-dashboard.php');
 include_once(EMCS_INCLUDES . 'embed-customizer/customizer.php');
 
@@ -24,7 +25,12 @@ function emcs_admin_scripts()
 {
     wp_enqueue_style('emcs_admin_css', EMCS_URL . 'assets/css/admin.css');
     wp_enqueue_style('emcs_util_css', EMCS_URL . 'assets/css/util.css');
-    wp_enqueue_script('emcs_customizer_js',  EMCS_URL . 'assets/js/embed-customizer.js', array(), false, true);
+
+    if (isset($_REQUEST['page'])) {
+        if ($_REQUEST['page'] == 'emcs-customizer') {
+            wp_enqueue_script('emcs_customizer_js',  EMCS_URL . 'assets/js/embed-customizer.js', array(), false, true);
+        }
+    }
 }
 
 function emcs_calendly_scripts()
@@ -45,4 +51,6 @@ add_action('admin_menu', 'EMCS_Event_Types_Dashboard::init');
 add_action('admin_menu', 'EMCS_Customizer::init');
 include_once(EMCS_INCLUDES . 'settings.php');
 
-// TODO: Add admin notices
+// admin notices
+add_action('in_admin_header', 'EMCS_Admin::clear_unwanted_notices', 1000);
+add_action('admin_notices', 'EMCS_Admin::rating_admin_notice');

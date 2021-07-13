@@ -1,10 +1,41 @@
-.emcs {
-    background-color: #fff;
-    padding: 20px;
-    margin: 0;
-    color: #333;
+@font-face {
+    font-family: 'emcicon';
+    src: url('../fonts/iemc-icon.eot?jvzn1r');
+    src: url('../fonts/emc-icon.eot?jvzn1r#iefix') format('embedded-opentype'), url('../fonts/emc-icon.ttf?jvzn1r') format('truetype'), url('../fonts/emc-icon.woff?jvzn1r') format('woff'), url('../fonts/emc-icon.svg?jvzn1r#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.emcs-title {
+    background-color: #146cec;
+    padding: 30px;
+}
+
+.emcs-subtitle {
+    background-color: #fdfdfd;
+    height: 65px;
+    padding: 20px 30px;
+    margin-bottom: 50px;
+    color: #333333;
     font-size: 18px;
+    font-weight: 500;
     line-height: 1;
+}
+
+h1.emcs-event-types {
+    font-size: 20px;
+}
+
+.toplevel_page_emcs-event-types div#wpcontent,
+.embed-calendly_page_emcs-settings div#wpcontent,
+.embed-calendly_page_emcs-customizer div#wpcontent {
+    padding-left: 0;
+}
+
+#adminmenu #toplevel_page_emcs-event-types .menu-icon-generic div.wp-menu-image:before {
+    font-family: 'emcicon' !important;
+    content: '\e900';
+    font-size: 1.3em!important;
 }
 
 .emcs-embed-title {
@@ -15,7 +46,7 @@
 }
 
 .emcs-wrapper {
-    margin: 60px 40px 60 20px;
+    padding: 40px;
 }
 
 .emcs-container {
@@ -28,16 +59,16 @@
     text-align: center;
 }
 
-td.emcs_event_type_column {
+td.emcs-event-type-column {
     padding-top: 20px;
 }
 
-.emcs-events {
-    margin-bottom: 40px;
+.emcs-sync-event-types {
+    float: right;
 }
 
 .emcs-customizer {
-    margin: 80px auto;
+    margin: 100px auto;
     padding: 80px 50px 70px 50px;
     width: 60%;
 }
@@ -45,6 +76,11 @@ td.emcs_event_type_column {
 .emcs-customizer-preview {
     background-color: #cccccc;
     height: 200px;
+}
+
+.emcs-preview {
+    overflow: scroll;
+    text-align: center;
 }
 
 .emcs-customizer-preview .emcs-preview-content {
@@ -90,6 +126,15 @@ input[name="emcs-embed-customizer-shortcode"].form-control {
     font-size: 12px;
 }
 
+span.dashicons.dashicons-update-alt.emcs-dashicon {
+    margin-top: 5px;
+}
+
+span.dashicons.dashicons-star-filled.emcs-dashicon.emcs-dashicon-rating {
+    color: #f7ae05;
+    width: 18px;
+}
+
 #emcs_api_key_description {
     font-size: 12px;
 }
@@ -104,6 +149,7 @@ input[name="emcs-embed-customizer-shortcode"].form-control {
     border: 2px dashed#116DED;
     padding: 20px;
     margin-bottom: 20px;
+    word-break: break-word;
 }
 
 @media only screen and (max-device-width: 768px) {
@@ -116,4 +162,17 @@ input[name="emcs-embed-customizer-shortcode"].form-control {
         font-size: 13px;
         margin-bottom: 10px;
     }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1145px) {
+    /* .emcs-customizer-preview .emcs-preview-content {
+        display: flex;
+        flex-direction: column;
+        padding: 76px 10px 0px 10px;
+        white-space: none;
+    }
+    .emcs-preview {
+        font-size: 10px !important;
+        padding: 10px !important;
+    } */
 }

@@ -13,7 +13,7 @@ defined('ABSPATH') || exit;
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-type">Embed Type</label>
                                 <select name="emcs-customizer-embed-type" class="form-control">
-                                    <option value="emcs-inline-text">Inline Form</option>
+                                    <option value="emcs-inline-text">Inline</option>
                                     <option value="emcs-popup-text">Popup Text</option>
                                     <option value="emcs-popup-button">Popup Button</option>
                                 </select>
@@ -51,7 +51,7 @@ defined('ABSPATH') || exit;
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="emcs-embed-text-size">Text Size(px)</label>
-                                <input type="number" class="form-control" name="emcs-embed-text-size" value="12">
+                                <input type="number" class="form-control" name="emcs-embed-text-size" min="10" max="30" value="12">
                             </div>
                         </div>
                     </form>

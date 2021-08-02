@@ -6,21 +6,35 @@ include_once(EMCS_INCLUDES . 'api.php');
 
 class EMCS_Event_Types
 {
-
     public static function get_event_types()
     {
 
         if (!self::get_event_types_from_db()) {
             $event_types = self::fetch_event_types_from_calendly();
 
-            if(!empty($event_types)) {
+            if (!empty($event_types)) {
                 self::cache_calendly_event_types($event_types);
-            }  else {
+            } else {
                 return [];
             }
         }
 
         return self::get_event_types_from_db();
+    }
+
+    private static function get_event_types_from_db()
+    {
+        global $wpdb;
+
+        $table_name = self::get_emcs_table();
+        $query = "SELECT * FROM $table_name";
+        $event_types = $wpdb->get_results($query);
+
+        if (!empty($event_types)) {
+            return $event_types;
+        }
+
+        return false;
     }
 
     private static function cache_calendly_event_types($event_types)
@@ -50,10 +64,10 @@ class EMCS_Event_Types
         if (!empty($event_type)) {
 
             return array(
-                'name'      => $event_type->get_event_name(),
-                'url'       => $event_type->get_event_url(),
-                'slug'      => $event_type->get_event_slug(),
-                'status'    => $event_type->get_event_status()
+                'name'      => sanitize_text_field($event_type->get_event_type_name()),
+                'url'       => sanitize_text_field($event_type->get_event_type_url()),
+                'slug'      => sanitize_text_field($event_type->get_event_type_slug()),
+                'status'    => sanitize_text_field($event_type->get_event_type_status())
             );
         }
 
@@ -100,22 +114,14 @@ class EMCS_Event_Types
         return $wpdb->get_charset_collate();
     }
 
-    private static function get_event_types_from_db()
+    public static function sync_event_types_button_listener()
     {
-        global $wpdb;
-
-        $table_name = self::get_emcs_table();
-        $query = "SELECT * FROM $table_name";
-        $event_types = $wpdb->get_results($query);
-        
-        if (!empty($event_types)) {
-            return $event_types;
+        if (isset($_REQUEST['emcs_sync_event_types'])) {
+            self::sync_event_types();
         }
-
-        return false;
     }
 
-    public static function sync_event_types()
+    private static function sync_event_types()
     {
         self::flush_event_types();
         $event_types = self::fetch_event_types_from_calendly();

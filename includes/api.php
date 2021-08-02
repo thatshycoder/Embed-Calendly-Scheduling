@@ -4,46 +4,9 @@ defined('ABSPATH') || exit;
 
 include_once(EMCS_INCLUDES . 'event-types/event-type.php');
 
-/**
- * Setup Calendly API connection 
- */
 class EMCS_API
 {
-    // TODO: refactor
-    public static function connect($endpoint, $api_key)
-    {
 
-        // TODO: Check if API doesn't return error
-        $url = 'https://calendly.com/api/v1' . $endpoint;
-        // $args = array(
-        //     'timeout' => 10,
-        //     'headers' => [
-        //         'X-Token: ' . $api_key
-        //     ],
-
-        // );
-
-        // return wp_remote_get($url, $args);
-
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-
-        $headers = array();
-        $headers[] = 'X-Token: ' . $api_key;
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
-        $result = curl_exec($ch);
-        
-        curl_close($ch);
-
-        return json_decode($result);
-    }
-    /**
-     * Get all events in a user's calendly account
-     */
     public static function emcs_get_events($api_key)
     {
         $calendly_events  = EMCS_API::connect('/users/me/event_types', $api_key);
@@ -58,7 +21,7 @@ class EMCS_API
             $event = new EMCS_Event_Type(
                 $events->attributes->name,
                 $events->attributes->description,
-                $events->attributes->active,
+                !empty($events->attributes->active) ? $events->attributes->active : '0',
                 $events->attributes->url,
                 $events->attributes->slug,
             );
@@ -67,5 +30,24 @@ class EMCS_API
         }
 
         return $events_data;
+    }
+
+    public static function connect($endpoint, $api_key)
+    {
+        $url = 'https://calendly.com/api/v1' . $endpoint;
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
+
+        $headers = array();
+        $headers[] = 'X-Token: ' . $api_key;
+
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $result = curl_exec($ch);
+        curl_close($ch);
+
+        return json_decode($result);
     }
 }

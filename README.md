@@ -16,5 +16,5 @@ With an easy to use widget customizer, design your embed widget directly from th
 ## Screenshots
 
 ![embed calendly](https://embedcalendly.com/wp-content/uploads/2021/08/screenshot-1-e1627833452581.png)
-![embed calendly](https://embedcalendly.com/wp-content/uploads/2021/08/screenshot-3-1-e1627833390642.png)
-![embed calendly](https://embedcalendly.com/wp-content/uploads/2021/07/emc-page-1.png)
+![embed calendly](https://embedcalendly.com/wp-content/uploads/2021/08/screenshot-3.png)
+![embed calendly](https://embedcalendly.com/wp-content/uploads/2021/08/screenshot-2.png)

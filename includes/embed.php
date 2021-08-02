@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 
 class EMCS_Embed
 {
-    protected $atts;
+    private $atts;
 
     public function __construct($atts)
     {
@@ -20,94 +20,96 @@ class EMCS_Embed
         }
     }
 
-    public function embed_calender()
+    public function embed_calendar()
     {
-        switch ($this->atts['embed_type']) {
-            case EMCS_BUTTON_EMBED_TYPE:
+        if (!empty($this->atts)) {
 
-                if ($this->atts['button_style'] == 1) {
-                    return $this->embed_inline_button_widget($this->atts);
-                } else {
-                    return $this->embed_popup_button_widget($this->atts);
-                }
+            switch ($this->atts['embed_type']) {
+                case EMCS_BUTTON_EMBED_TYPE:
 
-            case EMCS_POPUP_TEXT_EMBED_TYPE:
-                return $this->embed_popup_text_widget($this->atts);
+                    if ($this->atts['button_style'] == 1) {
+                        return $this->embed_inline_button_widget($this->atts);
+                    } else {
+                        return $this->embed_popup_button_widget($this->atts);
+                    }
 
-            default:
-                return $this->embed_inline_widget($this->atts);
+                case EMCS_POPUP_TEXT_EMBED_TYPE:
+                    return $this->embed_popup_text_widget($this->atts);
+
+                default:
+                    return $this->embed_inline_widget($this->atts);
+            }
         }
     }
 
     /**
      * Embeds calendly inline widget
+     * 
+     * @param array atts Array of shortcode options
+     * @return string HTML code for inline embed widget
      */
-    protected function embed_inline_widget($atts = array())
+    private function embed_inline_widget($atts = array())
     {
-        if (!empty($atts)) {
-            return '<div class="calendly-inline-widget ' . esc_attr($atts['style_class']) . '" data-url="' . esc_attr($atts['url']) . '"
-                         style="height:' . esc_attr($atts['form_height']) . '; width:' . esc_attr($atts['form_width']) . '"></div>';
-        }
+        return '<div class="calendly-inline-widget ' . esc_attr($atts['style_class']) . '" data-url="' . esc_url($atts['url']) . '"
+                     style="height:' . esc_attr($atts['form_height']) . '; min-width:' . esc_attr($atts['form_width']) . '"></div>';
     }
 
     /**
      * Embeds calendly popup text widget
+     * 
+     * @param array atts Array of shortcode options
+     * @return string HTML code for popup text embed widget
      */
-    protected function embed_popup_text_widget($atts = array())
+    private function embed_popup_text_widget($atts = array())
     {
-        if (!empty($atts)) {
-            return '<a class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url: \'' . esc_attr($atts['url']) . '\'});return false;"
-                       style="font-size:' . esc_attr($atts['text_size']) . '; color:' . esc_attr($atts['text_color']) . '">' . $atts['text'] . '</a>';
-        }
+        return '<a class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url: \'' . esc_url($atts['url']) . '\'});return false;"
+                   style="font-size:' . esc_attr($atts['text_size']) . '; color:' . esc_attr($atts['text_color']) . '">' . esc_attr($atts['text']) . '</a>';
     }
 
     /**
      * Embeds calendly inline button widget
+     * 
+     * @param array atts Array of shortcode options
+     * @return string HTML code for inline button embed widget
      */
-    protected function embed_inline_button_widget($atts = array())
+    private function embed_inline_button_widget($atts = array())
     {
         $button_padding = '';
 
         switch ($atts['button_size']) {
             case 1:
-                // small button size
-                $button_padding = '10px';
+                // small size inline button
+                $button_padding = apply_filters('emcs_small_inline_button', '10px');
                 break;
             case 2:
-                // medium button size
-                $button_padding = '15px';
+                // medium size inline button
+                $button_padding = apply_filters('emcs_medium_inline_button', '15px');
                 break;
             default:
-                // large button size
-                $button_padding = '20px';
+                // large size inline button
+                $button_padding = apply_filters('emcs_large_inline_button', '20px');
         }
 
-        if (!empty($atts)) {
-            return '<a class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url: \'' . esc_attr($atts['url']) . '\'});return false;"
-                       style="background-color: ' . $atts['button_color'] . '; padding: ' . $button_padding . '; font-size:' . esc_attr($atts['text_size']) . '; 
-                       color:' . esc_attr($atts['text_color']) . ';">' . $atts['text'] . '</a>';
-        }
+        return '<a class="' . esc_attr($atts['style_class']) . '" href="" onclick="Calendly.initPopupWidget({url: \'' . esc_url($atts['url']) . '\'});return false;"
+                   style="background-color: ' . $atts['button_color'] . '; padding: ' . $button_padding . '; font-size:' . esc_attr($atts['text_size']) . '; 
+                   color:' . esc_attr($atts['text_color']) . ';">' . esc_attr($atts['text']) . '</a>';
     }
 
     /**
      * Embeds calendly popup button widget
+     * 
+     * @param array atts Array of shortcode options
+     * @return string Script for popup button embed widget
      */
-    protected function embed_popup_button_widget($atts = array())
+    private function embed_popup_button_widget($atts = array())
     {
-        if (!empty($atts)) {
-            return $this->popup_script($atts);
-        }
+        return $this->popup_script($atts);
     }
 
-    protected function popup_script($atts)
+    private function popup_script($atts)
     {
-        if (empty($atts)) {
-            return;
-        }
-
-        // TODO: Check more customization options on calendly
         return '<script>Calendly.initBadgeWidget({ url: \'' . $atts['url'] . '\', text: \'' . $atts['text'] . '\', 
                 color: \'' . $atts['button_color'] . '\', textColor: \'' . $atts['text_color'] . '\', 
-                textSize: \'' . $atts['text_size'] . '\', branding: ' . $atts['branding'] . ' });</script>';
+                branding: ' . $atts['branding'] . ' });</script>';
     }
 }

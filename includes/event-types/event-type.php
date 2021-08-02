@@ -19,27 +19,27 @@ class EMCS_Event_Type
         $this->slug = $slug;
     }
 
-    public function get_event_name()
+    public function get_event_type_name()
     {
         return $this->name;
     }
 
-    public function get_event_description()
+    public function get_event_type_description()
     {
         return $this->description;
     }
 
-    public function get_event_status()
+    public function get_event_type_status()
     {
         return $this->status;
     }
 
-    public function get_event_url()
+    public function get_event_type_url()
     {
         return $this->url;
     }
 
-    public function get_event_slug()
+    public function get_event_type_slug()
     {
         return $this->slug;
     }

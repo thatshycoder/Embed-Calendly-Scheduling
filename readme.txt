@@ -1,65 +1,84 @@
-=== Embed Calendly Scheduling ===
+=== Embed Calendly ===
 Contributors: turn2honey
-Donate link: https://flutterwave.com/pay/spantuskqg2
-Tags: appointment, appointment booking, appointment scheduling, booking calendar
+Donate link: https://flutterwave.com/pay/emc-donate
+Tags: appointment, appointment booking, appointment scheduling, booking calendar, calendly, embed calendly
 Requires at least: 4.0
-Tested up to: 5.7
-Stable tag: 5.7
+Tested up to: 5.8
+Stable tag: 5.8
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-A simple and cleaner way to embed Calendly scheduling on WordPress.
+Easy and simple way to embed Calendly scheduling pages on WordPress.
 
 == Description ==
 
-Embed Calendly scheduling on your WordPress website in a cleaner and simpler way. Schedule meetings easily on your WordPress website through Calendly.
+[Embed Calendly](https://embedcalendly.com) helps you add Calendly scheduling pages to your WordPress website in an easy and simple way. 
+
+Allows visitors to easily schedule meetings *anywhere* on your WordPress website, through Calendly.
+
+With an easy to use widget customizer, design your embed widget directly from the WordPress dashboard.
 
 == Features ==
 
-1. Supports inline, text popup and button popup embed.
-2. Customize embed form, link and button. 
+1. Import Calendly event types to WordPress
+2. Customize embed widgets via shortcode.
+3. Easy to use widget customizer for customizing and generating embed widget shortcodes.
+4. Supports inline, text popup and button popup embed options.
 
 == Shortcode ==
 
-Embed scheduling form with default options using:
+Embed Calendly scheduling page on WordPress with:
 
-`
-[calendly type=3 url=https://calendly.com/example/call]
-`
+`[calendly url="https://calendly.com/example/call" type="1"]`
 
+Or
+
+`[calendly url="https://calendly.com/example/call" type="2" text="Book Now" text_color="#ffffff" text_size="14" button_style="1" button_size="1" button_color="#2694ea" branding="false" hide_details="false" style_class="custom_form_style"]`
 
 == Customization == 
 
-You can customize the booking form with the following shortcode options:
+You can customize the embed widget using the widget customizer at *Dashboard > Embed Calendly > Customizer*, or 
+with the following shortcode options:
 
-*   `type` - Embed form type. 1 - inline embed, 2 - popup button embed, 3 - popup text embed
+*   `type` - Embed form type. *1* - inline embed, *2* - popup button embed, *3* - popup text embed
 
-*   `url` - Scheduling link
+*   `url` - Scheduling page link
 
 *   `text` - Button/Link text
 
-*   `button_color` - Button color. Any hexadecimal color code is supported here
+*   `text_color` - Button/Link text color
 
-*   `text_color` - Text color
+*   `text_size` - Button/Link text size
+
+*   `button_color` - Button background color. Any hexadecimal color code is supported here
+
+*   `button_size` - Button size. *1* - Samll, *2* - Medium, *3* - Large
+
+*   `button_style` - Button style. *1* - Inline, *2* - Float
 
 *   `branding` - true/false. Show or hide branding
 
 *   `hide_details` - true/false. Hide or show details
 
-*   `style_class` - CSS style name for customizing the embed form/button
+*   `style_class` - CSS style name for adding custom css style to embed widget
 
-
-== Example ==
-
-`[calendly type=3 url=https://calendly.com/example/call text="Book us now" button_color=#444444 text_color=#000000 branding=false hide_details=false style_class=custom_form_style]`
 
 == Frequently Asked Questions ==
 
-= How do I display scheduling form on my pages? =
+= How do I display scheduling forms on pages? =
 
-Try adding `[calendly type=3 url=https://calendly.com/example/call]` shortcode to any page you want to display the form on.
+Add `[calendly url="https://calendly.com/example/call" type="1"]` shortcode to any page you want to display the form on.
 
-= How do I style scheduling form? =
+= How do I connect to Calendly? =
 
-Use the `style_class` option when adding the shortcode. Example: [calendly type=1 url=https://calendly.com/example/call style_class=custom_form_style]
+Paste your Calendly api key in the API Key tab on Embed Calendly settings page
+
+= How do I style my embed widget on WordPress? =
+
+Go to * Dashboard > Embed Calendly > Customizer * and select an event type from the dropdown. Then adjust the customizer settings to suit you.
+
+= How do I add additional CSS class to embed widgets? =
+
+Use the `style_class` option when adding the shortcode. 
+Example: [calendly type="1" url="https://calendly.com/example/call" style_class="custom_form_style"]

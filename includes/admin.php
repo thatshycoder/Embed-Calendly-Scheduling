@@ -65,7 +65,7 @@ class EMCS_Admin
                     </div>
                 </div>
             </div>
-        <?
+        <?php
         }
     }
 
@@ -89,7 +89,7 @@ class EMCS_Admin
                     <a href="?emcs_dismiss_notice=1">Dismiss</a>
                 </p>
             </div>
-<?
+<?php
         }
     }
 
@@ -98,13 +98,13 @@ class EMCS_Admin
         if (isset($_REQUEST['emcs_dismiss_notice'])) {
             if (!empty($_REQUEST['emcs_dismiss_notice'])) {
 
-                if($_REQUEST['emcs_dismiss_notice'] == 1) {
+                if ($_REQUEST['emcs_dismiss_notice'] == 1) {
                     update_option('emcs_stop_review_notice', 1);
                 } else {
                     update_option('emcs_stop_newsletter_notice', 1);
                 }
             }
-        } 
+        }
     }
 
     public static function on_activation()

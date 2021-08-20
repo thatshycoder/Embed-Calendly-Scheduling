@@ -53,7 +53,7 @@ function emcs_settings_page()
         __('Settings', 'emcs'),
         'manage_options',
         'emcs-settings',
-        'emcs_settings_page_html',
+        'emcs_settings_page_html'
     );
 }
 

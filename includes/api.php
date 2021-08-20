@@ -23,7 +23,7 @@ class EMCS_API
                 $events->attributes->description,
                 !empty($events->attributes->active) ? $events->attributes->active : '0',
                 $events->attributes->url,
-                $events->attributes->slug,
+                $events->attributes->slug
             );
 
             $events_data[] = $event;

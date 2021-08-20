@@ -8,7 +8,6 @@ class EMCS_Event_Types
 {
     public static function get_event_types()
     {
-
         if (!self::get_event_types_from_db()) {
             $event_types = self::fetch_event_types_from_calendly();
 
@@ -25,8 +24,12 @@ class EMCS_Event_Types
     private static function get_event_types_from_db()
     {
         global $wpdb;
-
         $table_name = self::get_emcs_table();
+
+        if(!self::emcs_event_types_table_exists()) {
+            return false;
+        }
+
         $query = "SELECT * FROM $table_name";
         $event_types = $wpdb->get_results($query);
 
@@ -37,19 +40,24 @@ class EMCS_Event_Types
         return false;
     }
 
-    private static function cache_calendly_event_types($event_types)
-    {
+    private static function emcs_event_types_table_exists() {
         global $wpdb;
         $table_name = self::get_emcs_table();
 
-        // create event types table if it doesn't exist
-        self::create_emcs_event_types_table($table_name);
+        return ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name);
+    }
+
+    private static function cache_calendly_event_types($event_types)
+    {
+        global $wpdb;
 
         if (!empty($event_types)) {
 
+            self::create_emcs_event_types_table();
+
             foreach ($event_types as $event_type) {
                 $data = self::prepare_event_type($event_type);
-                $wpdb->insert($table_name, $data);
+                $wpdb->insert(self::get_emcs_table(), $data);
             }
 
             return true;
@@ -85,8 +93,9 @@ class EMCS_Event_Types
         return false;
     }
 
-    private static function create_emcs_event_types_table($table_name)
+    public static function create_emcs_event_types_table()
     {
+        $table_name = self::get_emcs_table();
         $charset_collate = self::get_emcs_table_charset_collate();
 
         $sql = "CREATE TABLE $table_name (

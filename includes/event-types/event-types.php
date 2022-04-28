@@ -86,8 +86,15 @@ class EMCS_Event_Types
     {
         $options = get_option('emcs_settings');
 
-        if (!empty($options['emcs_api_key'])) {
-            return EMCS_API::emcs_get_events($options['emcs_api_key']);
+        if (!empty($options['emcs_v2api_key'])) {
+            
+            $calendly = new EMCS_API('v2', $options['emcs_v2api_key']);
+            return $calendly->emcs_get_events();
+
+        } elseif (!empty($options['emcs_v1api_key'])) {
+
+            $calendly = new EMCS_API('v1', $options['emcs_v1api_key']);
+            return $calendly->emcs_get_events();
         }
 
         return false;

@@ -169,9 +169,6 @@ function emcs_settings_page_html()
 
 function emcs_sanitize_input($inputs)
 {
-
-    $options = get_option('emcs_settings');
-
     $sanitized_input = [];
 
     foreach ($inputs as $input_key => $input_value) {

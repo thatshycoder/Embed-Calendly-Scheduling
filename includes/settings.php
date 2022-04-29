@@ -46,6 +46,9 @@ function emcs_v2api_field_cb($args)
     <div class="form-row">
         <div class="form-group col-md-8">
             <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo !empty($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?>" class="form-control" placeholder="Paste your V2 API key here" />
+            <p id="<?php echo esc_attr($args['label_for']); ?>_description">
+                Generate your personal access token on the <a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>integerations</em></a> page
+            </p>
         </div>
     </div>
 <?php
@@ -60,7 +63,7 @@ function emcs_api_field_cb($args)
         <div class="form-group col-md-8">
             <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo !empty($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?>" class="form-control" placeholder="Paste your V1 API key here" />
             <p id="<?php echo esc_attr($args['label_for']); ?>_description">
-                Your API Key can be found on Calendly <a href="https://calendly.com/integrations" target="_blank"><em>integerations</em></a> page
+                Your API Key can be found on Calendly <a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>integerations</em></a> page
             </p>
         </div>
     </div>

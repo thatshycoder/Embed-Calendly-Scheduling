@@ -50,7 +50,7 @@ class EMCS_Embed
      */
     private function embed_inline_widget($atts = array())
     {
-        return '<div class="calendly-inline-widget ' . esc_attr($atts['style_class']) . '" data-url="' . esc_url($atts['url']) . '"
+        return '<div id="calendly-inline-widget" class="calendly-inline-widget ' . esc_attr($atts['style_class']) . '" data-url="' . esc_url($atts['url']) . '"
                      style="height:' . esc_attr($atts['form_height']) . '; min-width:' . esc_attr($atts['form_width']) . '"></div>';
     }
 

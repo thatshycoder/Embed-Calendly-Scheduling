@@ -37,12 +37,10 @@ class EMCS_Shortcode
         $button_style = (!empty($atts['button_style'])) ? sanitize_text_field($atts['button_style']) : '1';
         $button_size = (!empty($atts['button_size'])) ? sanitize_text_field($atts['button_size']) : '1';
         $class = (!empty($atts['style_class'])) ? sanitize_text_field($atts['style_class']) : '';
-        $branding = (!empty($atts['branding'])) ? sanitize_text_field($atts['branding']) : 'true';
+        $branding = (!empty($atts['branding'])) ? sanitize_text_field($atts['branding']) : 'false';
+        $hide_details = (!empty($atts['hide_details'])) ? sanitize_text_field($atts['hide_details']) : '0';
+        $cookie_banner = (!empty($atts['hide_cookie_banner'])) ? sanitize_text_field($atts['hide_cookie_banner']) : '0';
         $url = esc_url_raw($atts['url']);
-
-        if (!empty($atts['hide_details']) && $atts['hide_details'] == 'true') {
-            $url = $url . '?hide_event_type_details=1';
-        }
 
         return [
             'url'           => $url, 
@@ -56,7 +54,9 @@ class EMCS_Shortcode
             'button_style'  => $button_style,
             'button_size'   => $button_size,  
             'style_class'   => $class, 
-            'branding'      => $branding
+            'branding'      => $branding,
+            'hide_details'  => $hide_details,
+            'cookie_banner' => (int) $cookie_banner
         ];
     }
 }

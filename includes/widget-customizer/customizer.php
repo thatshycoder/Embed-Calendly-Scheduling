@@ -43,6 +43,7 @@ class EMCS_Customizer
                 return;
             }
 
+            $owner = EMCS_Event_Types::extract_event_type_owner($events[0]->url);
             ?>
             <div class="emcs-embed-title">Customize Widget</div>
             <?php

@@ -26,7 +26,7 @@ class EMCS_Event_Types
         global $wpdb;
         $table_name = self::get_emcs_table();
 
-        if(!self::emcs_event_types_table_exists()) {
+        if (!self::emcs_event_types_table_exists()) {
             return false;
         }
 
@@ -40,7 +40,8 @@ class EMCS_Event_Types
         return false;
     }
 
-    private static function emcs_event_types_table_exists() {
+    private static function emcs_event_types_table_exists()
+    {
         global $wpdb;
         $table_name = self::get_emcs_table();
 
@@ -87,14 +88,27 @@ class EMCS_Event_Types
         $options = get_option('emcs_settings');
 
         if (!empty($options['emcs_v2api_key'])) {
-            
+
             $calendly = new EMCS_API('v2', $options['emcs_v2api_key']);
             return $calendly->emcs_get_events();
-
         } elseif (!empty($options['emcs_v1api_key'])) {
 
             $calendly = new EMCS_API('v1', $options['emcs_v1api_key']);
             return $calendly->emcs_get_events();
+        }
+
+        return false;
+    }
+
+    public static function extract_event_type_owner($event_type_url)
+    {
+
+        if (!empty($event_type_url)) {
+
+            $owner = str_ireplace('https://calendly.com/', '', $event_type_url);
+            $owner = strstr($owner, '/', true);
+
+            return $owner;
         }
 
         return false;

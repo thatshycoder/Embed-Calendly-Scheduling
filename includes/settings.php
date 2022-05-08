@@ -45,7 +45,7 @@ function emcs_v2api_field_cb($args)
 ?>
     <div class="form-row">
         <div class="form-group col-md-8">
-            <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo !empty($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?>" class="form-control" placeholder="Paste your V2 API key here" />
+            <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" placeholder="<?php echo !empty($options[$args['label_for']]) ? '*****************' : ''; ?>" class="form-control" />
             <p id="<?php echo esc_attr($args['label_for']); ?>_description">
                 Generate your personal access token on the <a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>integerations</em></a> page
             </p>
@@ -61,7 +61,7 @@ function emcs_api_field_cb($args)
 ?>
     <div class="form-row">
         <div class="form-group col-md-8">
-            <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo !empty($options[$args['label_for']]) ? esc_attr($options[$args['label_for']]) : ''; ?>" class="form-control" placeholder="Paste your V1 API key here" />
+            <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" placeholder="<?php echo !empty($options[$args['label_for']]) ? '*****************' : ''; ?>" class="form-control" />
             <p id="<?php echo esc_attr($args['label_for']); ?>_description">
                 Your API Key can be found on Calendly <a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>integerations</em></a> page
             </p>
@@ -172,15 +172,57 @@ function emcs_settings_page_html()
 
 function emcs_sanitize_input($inputs)
 {
+    $options = get_option('emcs_settings');
     $sanitized_input = [];
 
     foreach ($inputs as $input_key => $input_value) {
 
-        $input_value = str_replace(' ', '', $input_value);
-        $input_value = trim(strip_tags(stripslashes($input_value)));
-        $input_value = sanitize_text_field($input_value);
-        $sanitized_input[$input_key] = $input_value;
+        if (empty($input_value) && isset($options[$input_key])) {
+
+            $sanitized_input[$input_key] = $options[$input_key];
+        } else {
+
+            if (!empty($input_value)) {
+
+                $input_value = str_replace(' ', '', $input_value);
+                $input_value = trim(strip_tags(stripslashes($input_value)));
+                $input_value = sanitize_text_field($input_value);
+                $sanitized_input[$input_key] = emcs_encrypt_key($input_value);
+
+            } else {
+                
+                $sanitized_input[$input_key] = false;
+            }
+        }
     }
 
     return $sanitized_input;
+}
+
+function emcs_encrypt_key($api_key)
+{
+    $encryption_key = get_option('emcs_encryption_key');
+
+    if (in_array(EMCS_CIPHER, openssl_get_cipher_methods()) && !empty($encryption_key)) {
+
+        $encryption_key_iv = substr($encryption_key, 0, 16);
+
+        return base64_encode(openssl_encrypt($api_key, EMCS_CIPHER, $encryption_key, 0, $encryption_key_iv));
+    }
+
+    return false;
+}
+
+function emcs_decrypt_key($api_key)
+{
+    $encryption_key = get_option('emcs_encryption_key');
+
+    if (in_array(EMCS_CIPHER, openssl_get_cipher_methods()) && !empty($encryption_key)) {
+
+        $encryption_key_iv = substr($encryption_key, 0, 16);
+
+        return openssl_decrypt(base64_decode($api_key), EMCS_CIPHER, $encryption_key, 0, $encryption_key_iv);
+    }
+
+    return false;
 }

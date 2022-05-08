@@ -17,6 +17,7 @@ function emcs_uninstall() {
     delete_option('emcs_stop_review_notice');
     delete_option('emcs_stop_newsletter_notice');
     delete_option('emcs_display_greeting');
+    delete_option('emcs_encryption_key');
 }
 
 emcs_uninstall();

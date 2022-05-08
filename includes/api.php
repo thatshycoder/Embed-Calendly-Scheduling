@@ -51,8 +51,7 @@ class EMCS_API
 
     protected function emcs_get_events_v2()
     {
-
-        $user = $this->get_current_user()->resource->uri;
+        $user = (isset($this->get_current_user()->resource)) ? $this->get_current_user()->resource->uri : '';
         $calendly_events  = EMCS_API::connect('/event_types', $this->api_key, $user);
         $events_data = array();
 

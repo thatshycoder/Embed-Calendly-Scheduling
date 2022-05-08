@@ -89,12 +89,33 @@ class EMCS_Event_Types
 
         if (!empty($options['emcs_v2api_key'])) {
 
-            $calendly = new EMCS_API('v2', $options['emcs_v2api_key']);
-            return $calendly->emcs_get_events();
+            if(function_exists('emcs_decrypt_key')) {
+                
+                $api_key = emcs_decrypt_key($options['emcs_v2api_key']);
+                $calendly = new EMCS_API('v2', $api_key);
+
+                // retry v1 key if v2 key returns empty results
+                if($calendly->emcs_get_events() === FALSE) {
+                    
+                    $api_key = emcs_decrypt_key($options['emcs_v1api_key']);
+                    $calendly = new EMCS_API('v1', $api_key);
+
+                    return $calendly->emcs_get_events();
+                    
+                }
+
+                return $calendly->emcs_get_events();
+            }
+
         } elseif (!empty($options['emcs_v1api_key'])) {
 
-            $calendly = new EMCS_API('v1', $options['emcs_v1api_key']);
-            return $calendly->emcs_get_events();
+            if(function_exists('emcs_decrypt_key')) {
+                
+                $api_key = emcs_decrypt_key($options['emcs_v1api_key']);
+                $calendly = new EMCS_API('v1', $api_key);
+                
+                return $calendly->emcs_get_events();
+            }
         }
 
         return false;

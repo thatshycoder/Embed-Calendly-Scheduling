@@ -91,6 +91,13 @@ function emcs_settings_page_html()
         return;
     }
 
+    // set encryption key if it's not already done
+    $encryption_key = get_option('emcs_encryption_key');
+
+    if(!$encryption_key || empty($encryption_key)) {
+        add_option('emcs_encryption_key', bin2hex(openssl_random_pseudo_bytes(10)));
+    }
+
     if (isset($_GET['settings-updated'])) {
         add_settings_error('emcs_messages', 'emcs_message', __('Settings Saved', 'emcs'), 'updated');
     }

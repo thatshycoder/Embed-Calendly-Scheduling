@@ -113,6 +113,7 @@ class EMCS_Admin
         add_option('emcs_stop_review_notice', 0);
         add_option('emcs_stop_newsletter_notice', 0);
         add_option('emcs_display_greeting', 1);
+        add_option('emcs_encryption_key', bin2hex(openssl_random_pseudo_bytes(10)));
 
         require_once(EMCS_EVENT_TYPES . 'event-types.php');
         EMCS_Event_Types::create_emcs_event_types_table();

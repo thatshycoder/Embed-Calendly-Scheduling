@@ -3,8 +3,8 @@ Contributors: turn2honey
 Donate link: https://flutterwave.com/pay/emc-donate
 Tags: appointment, appointment booking, appointment scheduling, booking calendar, calendly, embed calendly
 Requires at least: 4.0
-Tested up to: 5.8
-Stable tag: 5.8
+Tested up to: 5.9
+Stable tag: 5.9
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -59,7 +59,9 @@ with the following shortcode options:
 
 *   `branding` - true/false. Show or hide branding
 
-*   `hide_details` - true/false. Hide or show details
+*   `hide_cookie_banner` - 0(false) or 1(true). Hide or show cookie settings/banner
+    
+*    `hide_details` - 0(false) or 1(true). Hide or show details
 
 *   `style_class` - CSS style name for adding custom css style to embed widget
 

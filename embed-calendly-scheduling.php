@@ -5,16 +5,17 @@
  * Description: Easy and simple way to embed Calendly scheduling pages on WordPress.
  * Author: Embed Calendly, Shycoder
  * Author URI: https://embedcalendly.com/
- * Version: 2.0
+ * Version: 3.0
  * License: GPLv2 or later
  */
 
 defined('ABSPATH') or die('No script kiddies please.');
-define('EMCS_DIR', plugin_dir_path(__FILE__));
-define('EMCS_URL', plugin_dir_url(__FILE__));
-define('EMCS_INCLUDES', EMCS_DIR . 'includes/');
-define('EMCS_EVENT_TYPES', EMCS_INCLUDES . 'event-types/');
-define('EMCS_CUSTOMIZER_TEMPLATES', EMCS_INCLUDES . 'widget-customizer/template-parts/');
+defined('EMCS_DIR')                             || define('EMCS_DIR', plugin_dir_path(__FILE__));
+defined('EMCS_URL')                             || define('EMCS_URL', plugin_dir_url(__FILE__));
+defined('EMCS_INCLUDES')                        || define('EMCS_INCLUDES', EMCS_DIR . 'includes/');
+defined('EMCS_EVENT_TYPES')                     || define('EMCS_EVENT_TYPES', EMCS_INCLUDES . 'event-types/');
+defined('EMCS_CUSTOMIZER_TEMPLATES')            || define('EMCS_CUSTOMIZER_TEMPLATES', EMCS_INCLUDES . 'widget-customizer/template-parts/');
+defined('EMCS_CIPHER')                          || define('EMCS_CIPHER', 'aes-256-cbc');
 
 include_once(EMCS_INCLUDES . 'admin.php');
 include_once(EMCS_INCLUDES . 'shortcode.php');

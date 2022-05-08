@@ -17,16 +17,43 @@ function emcs_settings_init()
     );
 
     add_settings_field(
-        'emcs_api_field',
-        __('API Key', 'emcs'),
+        'emcs_v1api_field',
+        __('V1 API Key', 'emcs'),
         'emcs_api_field_cb',
         'emcs',
         'emcs_api_section',
         array(
-            'label_for' => 'emcs_api_key'
+            'label_for' => 'emcs_v1api_key'
+        )
+    );
+
+    add_settings_field(
+        'emcs_v2api_field',
+        __('V2 API Key', 'emcs'),
+        'emcs_v2api_field_cb',
+        'emcs',
+        'emcs_api_section',
+        array(
+            'label_for' => 'emcs_v2api_key'
         )
     );
 }
+
+function emcs_v2api_field_cb($args)
+{
+    $options = get_option('emcs_settings');
+?>
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" placeholder="<?php echo !empty($options[$args['label_for']]) ? '*****************' : ''; ?>" class="form-control" />
+            <p id="<?php echo esc_attr($args['label_for']); ?>_description">
+                Generate your personal access token on the <a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>integerations</em></a> page
+            </p>
+        </div>
+    </div>
+<?php
+}
+
 
 function emcs_api_field_cb($args)
 {
@@ -34,9 +61,9 @@ function emcs_api_field_cb($args)
 ?>
     <div class="form-row">
         <div class="form-group col-md-8">
-            <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" value="<?php echo !empty($options['emcs_api_key']) ? esc_attr($options['emcs_api_key']) : ''; ?>" class="form-control" placeholder="Paste your API key here"/>
+            <input id="<?php echo esc_attr($args['label_for']); ?>" name="emcs_settings[<?php echo esc_attr($args['label_for']); ?>]" placeholder="<?php echo !empty($options[$args['label_for']]) ? '*****************' : ''; ?>" class="form-control" />
             <p id="<?php echo esc_attr($args['label_for']); ?>_description">
-                Your API Key can be found on Calendly <a href="https://calendly.com/integrations" target="_blank"><em>integerations</em></a> page
+                Your API Key can be found on Calendly <a href="https://calendly.com/integrations/api_webhooks" target="_blank"><em>integerations</em></a> page
             </p>
         </div>
     </div>
@@ -62,6 +89,13 @@ function emcs_settings_page_html()
     // Show the settings page to only admins
     if (!current_user_can('manage_options')) {
         return;
+    }
+
+    // set encryption key if it's not already done
+    $encryption_key = get_option('emcs_encryption_key');
+
+    if(!$encryption_key || empty($encryption_key)) {
+        add_option('emcs_encryption_key', bin2hex(openssl_random_pseudo_bytes(10)));
     }
 
     if (isset($_GET['settings-updated'])) {
@@ -143,12 +177,59 @@ function emcs_settings_page_html()
 <?php
 }
 
-function emcs_sanitize_input($input) {
-    
+function emcs_sanitize_input($inputs)
+{
+    $options = get_option('emcs_settings');
     $sanitized_input = [];
-    $api_key = str_replace(' ', '', $input['emcs_api_key']);
-    $api_key = strip_tags(stripslashes($api_key));
-    $sanitized_input['emcs_api_key'] = sanitize_text_field($api_key);
+
+    foreach ($inputs as $input_key => $input_value) {
+
+        if (empty($input_value) && isset($options[$input_key])) {
+
+            $sanitized_input[$input_key] = $options[$input_key];
+        } else {
+
+            if (!empty($input_value)) {
+
+                $input_value = str_replace(' ', '', $input_value);
+                $input_value = trim(strip_tags(stripslashes($input_value)));
+                $input_value = sanitize_text_field($input_value);
+                $sanitized_input[$input_key] = emcs_encrypt_key($input_value);
+
+            } else {
+                
+                $sanitized_input[$input_key] = false;
+            }
+        }
+    }
 
     return $sanitized_input;
+}
+
+function emcs_encrypt_key($api_key)
+{
+    $encryption_key = get_option('emcs_encryption_key');
+
+    if (in_array(EMCS_CIPHER, openssl_get_cipher_methods()) && !empty($encryption_key)) {
+
+        $encryption_key_iv = substr($encryption_key, 0, 16);
+
+        return base64_encode(openssl_encrypt($api_key, EMCS_CIPHER, $encryption_key, 0, $encryption_key_iv));
+    }
+
+    return false;
+}
+
+function emcs_decrypt_key($api_key)
+{
+    $encryption_key = get_option('emcs_encryption_key');
+
+    if (in_array(EMCS_CIPHER, openssl_get_cipher_methods()) && !empty($encryption_key)) {
+
+        $encryption_key_iv = substr($encryption_key, 0, 16);
+
+        return openssl_decrypt(base64_decode($api_key), EMCS_CIPHER, $encryption_key, 0, $encryption_key_iv);
+    }
+
+    return false;
 }

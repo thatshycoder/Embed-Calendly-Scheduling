@@ -3,7 +3,7 @@
 defined('ABSPATH') || exit;
 ?>
 
-<div class="emcs-choose-customizer-form emcs emcs-text-center">
+<div class="emcs-choose-customizer-form emcs emcs-text-center" id="<?php echo esc_attr($owner); ?>">
     <div class="sc-wrapper">
         <div class="sc-container">
             <form action="<?php echo esc_url(admin_url('admin.php?page=emcs-customizer')); ?>" method="POST">
@@ -16,7 +16,7 @@ defined('ABSPATH') || exit;
 
                         foreach ($events as $event) {
                         ?>
-                            <option value="<?php echo esc_attr($event->slug); ?>"><?php echo esc_attr($event->name); ?></option>
+                            <option value="<?php echo esc_attr($event->slug); ?>" id="<?php echo esc_attr($event->slug); ?>"><?php echo esc_attr($event->name); ?></option>
                         <?php
                         }
                         ?>

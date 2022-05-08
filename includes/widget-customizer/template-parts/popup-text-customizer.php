@@ -33,6 +33,15 @@ defined('ABSPATH') || exit;
                                 <input type="number" class="form-control" name="emcs-embed-text-size" min="10" max="30" value="12">
                             </div>
                         </div>
+                        <div class="form-row emcs-form-row">
+                            <div class="form-group col-md-6">
+                                <label for="emcs-cookie-banner">Hide Cookie Banner</label>
+                                <select name="emcs-cookie-banner" class="form-control">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-4">
@@ -47,7 +56,7 @@ defined('ABSPATH') || exit;
                 </div>
             </div>
             <button type="button" name="emcs-customizer-home" class="button button-default emcs-customizer-home">
-                        << Go Back </button>
+                << Go Back </button>
         </div>
     </div>
 </div>

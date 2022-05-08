@@ -10,7 +10,7 @@ defined('ABSPATH') || exit;
                 <div class="col-md-8">
                     <form>
                         <div class="form-row emcs-form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="emcs-embed-type">Embed Type</label>
                                 <select name="emcs-customizer-embed-type" class="form-control">
                                     <option value="emcs-inline-text">Inline</option>
@@ -18,13 +18,20 @@ defined('ABSPATH') || exit;
                                     <option value="emcs-popup-button">Popup Button</option>
                                 </select>
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="emcs-embed-form-height">Form Height(px)</label>
                                 <input type="number" class="form-control" name="emcs-embed-form-height" value="600" placeholder="600">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="emcs-embed-form-width">Form Width(px)</label>
                                 <input type="number" class="form-control" name="emcs-embed-form-width" value="400" placeholder="400">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="emcs-cookie-banner">Hide Cookie Banner</label>
+                                <select name="emcs-cookie-banner" class="form-control">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
                             </div>
                         </div>
                     </form>

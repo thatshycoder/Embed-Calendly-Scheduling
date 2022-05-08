@@ -61,7 +61,7 @@ with the following shortcode options:
 
 *   `hide_cookie_banner` - 0(false) or 1(true). Hide or show cookie settings/banner
     
-    `hide_details` - 0(false) or 1(true). Hide or show details
+*    `hide_details` - 0(false) or 1(true). Hide or show details
 
 *   `style_class` - CSS style name for adding custom css style to embed widget
 

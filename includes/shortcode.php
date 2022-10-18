@@ -13,6 +13,10 @@ class EMCS_Shortcode
 
     public static function load_view($atts)
     {
+        // enqueue style and script on demand
+        wp_enqueue_style('emcs_calendly_css');
+        wp_enqueue_script('emcs_calendly_js');
+
         $atts = array_change_key_case((array) $atts, CASE_LOWER);
 
         if (empty($atts) || empty($atts['url'])) {

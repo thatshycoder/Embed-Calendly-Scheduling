@@ -135,9 +135,9 @@ class EMCS_Embed
 
     private function popup_script($atts)
     {
-        return '<script>Calendly.initBadgeWidget({ url: \'' . $this->url . '\', text: \'' . $atts['text'] . '\', 
+        return '<script>window.onload = function() { Calendly.initBadgeWidget({ url: \'' . $this->url . '\', text: \'' . $atts['text'] . '\', 
                 color: \'' . $atts['button_color'] . '\', textColor: \'' . $atts['text_color'] . '\', 
-                branding: ' . $atts['branding'] . ' });</script>';
+                branding: ' . $atts['branding'] . ' });}</script>';
     }
 
     private function prepare_embed_url($url, $url_parts = []) {

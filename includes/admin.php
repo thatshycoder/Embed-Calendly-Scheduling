@@ -17,6 +17,7 @@ class EMCS_Admin
 
     public static function display_notices()
     {
+        wp_enqueue_style('emcs_style');
 
         $activation_time = get_option('emcs_activation_time');
         $stop_review_reminder = get_option('emcs_stop_review_notice');
@@ -40,28 +41,24 @@ class EMCS_Admin
         if ($pagenow == 'index.php') {
 ?>
             <div class="notice notice-info is-dismissible emcs-newsletter-notice">
-                <div class="sc-wrapper">
-                    <div class="sc-container">
-                        <div class="row">
-                            <div class="col-md-9">
-                                <h3>More cool features coming to <span class="emcs-primary-color">Embed Calendly</span> soon!</h3>
-                                <p>Be among the first to get notified.</p>
-                                <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-                                <div id="emcs_embed_signup">
-                                    <form action="https://embedcalendly.us6.list-manage.com/subscribe/post?u=91af9e1caa59d5bcf7df9e9ba&amp;id=a81b8045ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                                        <div id="mc_embed_signup_scroll">
-                                            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email" required>
-                                            <input type="submit" value="Get notified!" name="subscribe" id="mc-embedded-subscribe" class="emcs-subscribe-btn">
-                                            <a href="?emcs_dismiss_notice=2" class="emcs-dismiss-btn">Dismiss</a>
-                                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_91af9e1caa59d5bcf7df9e9ba_a81b8045ef" tabindex="-1" value=""></div>
-                                        </div>
-                                    </form>
+                <div class="emcs-row">
+                    <div class="emcs-col">
+                        <h3>More cool features coming to <span class="emcs-primary-color">Embed Calendly</span> soon!</h3>
+                        <p>Be among the first to get notified.</p>
+                        <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+                        <div id="emcs_embed_signup">
+                            <form action="https://embedcalendly.us6.list-manage.com/subscribe/post?u=91af9e1caa59d5bcf7df9e9ba&amp;id=a81b8045ef" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                                <div id="mc_embed_signup_scroll">
+                                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Email" required>
+                                    <input type="submit" value="Get notified!" name="subscribe" id="mc-embedded-subscribe" class="button-primary">
+                                    <a href="?emcs_dismiss_notice=2" class="emcs-dismiss-btn">Dismiss</a>
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_91af9e1caa59d5bcf7df9e9ba_a81b8045ef" tabindex="-1" value=""></div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 emcs-hide-col">
-                                <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc.svg') ?>" alt="embed calendly logo" width="100px" />
-                            </div>
+                            </form>
                         </div>
+                    </div>
+                    <div class="emcs-col emcs-hide-col">
+                        <img src="<?php echo esc_url(EMCS_URL . 'assets/img/emc.svg') ?>" alt="embed calendly logo" width="100px" />
                     </div>
                 </div>
             </div>

@@ -4,7 +4,7 @@ Donate link: https://flutterwave.com/pay/emc-donate
 Tags: appointment, appointment booking, appointment scheduling, booking calendar, calendly, embed calendly
 Requires at least: 4.0
 Tested up to: 6.2.0
-Stable tag: 3.3
+Stable tag: 3.4
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html

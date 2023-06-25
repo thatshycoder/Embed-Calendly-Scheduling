@@ -23,6 +23,10 @@ function emcs_uninstall()
     delete_option('emcs_stop_promotion_one');
     delete_option('emcs_stop_promotion_two');
     delete_option('emcs_promotion_two_delay');
+    delete_option('emcs_promotion');
+    delete_option('emcs_stop_promotions');
+    delete_option('emcs_promotion_delay');
+    delete_option('emcs_promotion_last_displayed');
 }
 
 emcs_uninstall();

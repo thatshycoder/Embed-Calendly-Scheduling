@@ -4,6 +4,17 @@ Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 
 == Changelog ==
 
+= 3.5 - 25-06-2023 =
+
+- Published changelog
+- Added optional promotion
+- Added option to permanently disable all promotion notices
+- Updated readme
+- Added pro version support
+- Updated settings page UI
+- Removed donation section from settings page
+
+
 = 3.4 - 13-05-2023 =
 
 - Removed experimental promotion

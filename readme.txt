@@ -95,11 +95,9 @@ Example: [calendly type="1" url="https://calendly.com/example/call" style_class=
 
 == Disclaimer == 
 
-The free version comes with optional promotion notices that can be easily disabled by clicking the "Don't show again"
-button, near the notice.
+The free version comes with optional promotion notices that can be easily disabled by clicking the "Don't show again" button, near the notice.
 
-These notices are shown in your admin dashboard, and once any of them is disabled, all other promotion notices from 
-Embed Calendly are disabled.
+These notices are shown in your admin dashboard, and once any of them is disabled, all other promotion notices from Embed Calendly are disabled.
 
 You can upgrade to the [pro version](https://embedcalendly.com/pricing/) to automatically disable all promotion notices.
 

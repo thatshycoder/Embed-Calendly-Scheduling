@@ -4,7 +4,7 @@ Donate link: https://flutterwave.com/pay/emc-donate
 Tags: appointment, appointment booking, appointment scheduling, booking calendar, calendly, embed calendly
 Requires at least: 4.0
 Tested up to: 6.2.2
-Stable tag: 3.5
+Stable tag: 3.6
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -116,6 +116,12 @@ function emcs_show_promotions() {
 `
 
 == Changelog ==
+
+= 3.6 - 09-07-2023 =
+
+- Fixed customizer bug on Divi theme
+- Adjusted promotion module
+
 
 = 3.5 - 25-06-2023 =
 

@@ -4,6 +4,12 @@ Plugin Page: https://wordpress.org/plugins/embed-calendly-scheduling/
 
 == Changelog ==
 
+= 3.6 - 09-07-2023 =
+
+- Fixed customizer bug on Divi theme
+- Adjusted promotion module
+
+
 = 3.5 - 25-06-2023 =
 
 - Published changelog

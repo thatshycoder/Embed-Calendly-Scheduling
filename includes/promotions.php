@@ -178,7 +178,7 @@ class EMCS_Promotions
         $last_promotion_id = get_option(self::LAST_DISPLAYED_PROMOTION);
         $current_promotion_delay = get_option(self::PROMOTION_DELAY_OPTION);
 
-        if ($last_promotion_id) {
+        if ($last_promotion_id || $last_promotion_id == 0) {
 
             if (self::is_more_than_3days_ago($current_promotion_delay)) {
 

@@ -174,6 +174,8 @@ class EMCS_Promotions
      */
     private static function get_current_promotion_id()
     {
+        return 2;
+        
         $promotion_id = 1;
         $last_promotion_id = get_option(self::LAST_DISPLAYED_PROMOTION);
         $current_promotion_delay = get_option(self::PROMOTION_DELAY_OPTION);

@@ -115,6 +115,12 @@ function emcs_show_promotions() {
 
 == Changelog ==
 
+= 3.7 - 12-10-2023 =
+
+- Improved security
+- Adjusted promotion module
+
+
 = 3.6 - 09-07-2023 =
 
 - Fixed customizer bug on Divi theme
